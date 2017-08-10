@@ -1,0 +1,71 @@
+body{
+	font-family: 'Raleway', sans-serif;
+	color: #555;
+	background-color: #ff5252;
+	margin: 10px 30px
+}
+
+#homepage{
+	max-width: 960px;
+	margin: 60px auto;
+	padding:10px 20px;
+	background-color: #fdfdfd;
+	border-radius: 6px;
+	box-shadow: 1px 2px 3px rgba(0,0,0,0.2)
+}
+input[type=text], select {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+ul{
+	margin:0;
+	padding:0;
+}
+li{
+	padding:15px 0;
+	background:#eee;
+	list-style-type: none;
+	font-size: 18px;
+	font-weight: bold;
+	margin: 10px 0;
+	border-radius: 4px;
+}
+span{
+	display: inline-block;
+	margin: 0 20px
+}
+span.dist{
+	color: green;
+	float: right
+}
+span.true{
+	border-radius: 10px;
+	width: 10px;
+	height: 10px;
+	background-color: green;
+}
+span.false{
+	border-radius: 10px;
+	width: 10px;
+	height: 10px;
+	background-color: #ff5252;
+}
+button{
+	float: right;
+	background: #888888;
+	border:0;
+	padding:5px 10px;
+	color: #fff;
+	display:block;
+	border-radius: 4px;
+	cursor: pointer;
+	line-height: 30px;
+}
+border.false{
+	display: none;
+}

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Ninjas Finder</title>
+	<link href="styles.css" rel="stylesheet" type="text/css">
+	<link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+	<script src="https://unpkg.com/react@latest/dist/react.js"></script>
+    <script src="https://unpkg.com/react-dom@latest/dist/react-dom.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+</head>
+<body>
+<h1 class="title">Ninjas Finder - a Ninja REST API</h1>
+<div id="homepage">
+	<h2>Hire A Ninja nearest you!!</h2>
+	<div id="ninjas"></div>
+</div>
+<!-- React component -->
+<script type="text/babel">
+	let Ninjas=React.createClass({
+		getInitialState: function(){
+			return({
+				ninjas:[]
+			})
+		},
+
+		render:function(){
+			let ninjas=this.state.ninjas;
+			ninjas=ninjas.map(function(ninja,index){
+				return(
+					<li key={index}>
+						<span className={ninja.obj.available}></span>
+						<span className="name">{ninja.obj.name}</span>
+						<span className="rank">{ninja.obj.rank}</span>
+						<span className="dist">{Math.floor(ninja.dis/1000)+ " KM"}</span>
+
+					</li>
+				);
+			})
+			return (
+				<div id="ninja-container">
+					<form id="search" onSubmit={this.handleSubmit}>
+						<label for="lat">Enter your latitude:</label>
+						<input type="text" id="lat" ref="lat" name="latitude" placeholder="Latitude" required />
+						<label for="lng">Enter your longitude:</label>
+						<input type="text" id="lng" ref="lng" name="longitude" placeholder="Longitude" required />
+						<input type="submit" name="submit" className="button" value="Find Ninjas" />
+					</form>
+					<ul>
+						{ninjas}
+					</ul>
+				</div>
+			);
+		},
+		handleSubmit: function(e){
+			e.preventDefault();
+			let lat=this.refs.lat.value;
+			let lng=this.refs.lng.value;
+
+			fetch('api/ninjas?lng='+lng+'&lat='+lat).then(function(data){
+				return data.json();
+			}).then(json=>{
+				this.setState({
+					ninjas:json
+				});
+			});
+		}
+	});
+
+	ReactDOM.render(<Ninjas/>, document.getElementById('ninjas'))
+</script>
+</body>
+</html>
